@@ -1,0 +1,36 @@
+Mono path[0] = 'D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/buggy_Data/Managed'
+Mono path[1] = 'D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/buggy_Data/Mono'
+Mono config path = 'D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/buggy_Data/Mono/etc'
+PlayerConnection initialized from D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/buggy_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55471
+Multi-casting "[IP] 10.240.196.95 [Port] 55471 [Flags] 3 [Guid] 4106534284 [EditorId] 842109712 [Version] 1048832 [Id] WindowsPlayer(LenovoY580-Rado) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [10.240.196.95:55471]...
+Timed out. Continuing without host connection.
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56284
+PlayerConnection already initialized - listening to [10.240.196.95:55471]
+Initialize engine version: 5.2.1f1 (44735ea161b3)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4000 (ID=0x166)
+    Vendor:   Intel
+    VRAM:     128 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.049 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\System.dll (this message is harmless)
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 983c -> priority: 1 
+  Thread -> id: 9848 -> priority: 1 

@@ -1,0 +1,3 @@
+Email me at alexjhetherington@gmail.com if you need any help figuring things out (i've done a terrible job of commenting code).
+
+Most of it should be fine: the main hacky technique I use is passing constructor arguments in an array to a generic class, to construct a class of the specified type. Confusing! This can be found in the Speak class (complicated), or the SynchronisedWait class (simple) (both in scripts/OBT/Characters/Generic).
