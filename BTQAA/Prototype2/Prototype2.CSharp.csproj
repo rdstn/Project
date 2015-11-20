@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FriendEnemyButton.cs" />
     <Compile Include="Assets\Scripts\Menu\LoadOnClick.cs" />
     <Compile Include="Assets\Scripts\Menu\PlaybackSpeed.cs" />
     <Compile Include="Assets\Scripts\Menu\Timer.cs" />
