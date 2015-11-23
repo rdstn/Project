@@ -1,0 +1,17 @@
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\Mono.Cecil.dll
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\UnityEditor.dll
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\UnityEngine.dll
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\UnityEngine.Networking.dll
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\UnityEngine.xml
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\UnityEngine.Networking.xml
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\UnityEditor.xml
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\Mono.Cecil.xml
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.xml
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_obj\Debug\Prototype2.CSharp.csprojResolveAssemblyReference.cache
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_obj\Debug\Assembly-CSharp.dll
+D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Temp\UnityVS_obj\Debug\Assembly-CSharp.pdb
