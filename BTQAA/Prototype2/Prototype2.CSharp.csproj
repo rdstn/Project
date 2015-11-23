@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -70,6 +72,8 @@
   <ItemGroup>
     <Compile Include="Assets\CarrierScript.cs" />
     <Compile Include="Assets\FriendEnemyButton.cs" />
+    <Compile Include="Assets\NameField.cs" />
+    <Compile Include="Assets\SORelationship.cs" />
     <Compile Include="Assets\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\Menu\LoadOnClick.cs" />
     <Compile Include="Assets\Scripts\Menu\PlaybackSpeed.cs" />
@@ -161,7 +165,8 @@
     <Compile Include="Assets\Scripts\OBT\Knowledge\KnowledgeBase.cs" />
     <Compile Include="Assets\Scripts\OBT\Knowledge\Sentence.cs" />
     <Compile Include="Assets\Scripts\Scripted\TimeKeeper.cs" />
-    <Compile Include="Assets\TraitListScript.cs" />
+    <Compile Include="Assets\TabName.cs" />
+    <Compile Include="Assets\TraitList.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

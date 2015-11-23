@@ -3,34 +3,39 @@ using UnityEngine.UI;
 
 public class FriendEnemyButton : MonoBehaviour {
 
-    public UnityEngine.UI.Button self; //self
-    public UnityEngine.UI.Text tab; //tab button
+    public Button itself; //self
+    public Text tab; //tab button text referential to this character button.
+    public int target; //marks which relationship we are editing.
+    public int character; //marks which character we are editing.
     public GameObject carrier; //The data carrier, used for transmission to the actual game session.
 
-	// Use this for initialization
-	void Start () {
-        self.GetComponentInChildren<Text>().text = tab.text;
-        self.image.color = Color.white;
+    // Use this for initialization
+    void Start () {
+        itself.GetComponentInChildren<Text>().text = tab.text;
+        itself.image.color = Color.white;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        self.GetComponentInChildren<Text>().text = tab.text;
+        itself.GetComponentInChildren<Text>().text = tab.text;
     }
 
     public void Clicked ()
     {
-        if (self.image.color == Color.white)
+        if (itself.image.color == Color.white)
         {
-            self.image.color = Color.red;
+            itself.image.color = Color.red;
+            carrier.GetComponent<CarrierScript>().SetRelationship(2, target, character);
         }
-        else if (self.image.color == Color.red)
+        else if (itself.image.color == Color.red)
         {
-            self.image.color = Color.green;
+            itself.image.color = Color.green;
+            carrier.GetComponent<CarrierScript>().SetRelationship(1, target, character);
         }
         else
         {
-            self.image.color = Color.white;
+            itself.image.color = Color.white;
+            carrier.GetComponent<CarrierScript>().SetRelationship(0, target, character);
         }
     }
 }

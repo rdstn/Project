@@ -5,12 +5,12 @@ using System.Collections;
 public class CarrierScript : MonoBehaviour {
 
     public static CarrierScript current;
-    public int[] red1traits;
-    public int[] red2traits;
-    public int[] green1traits;
-    public int[] green2traits;
-    public int[] blue1traits;
-    public int[] blue2traits;
+    public string[] red1traits;
+    public string[] red2traits;
+    public string[] green1traits;
+    public string[] green2traits;
+    public string[] blue1traits;
+    public string[] blue2traits;
     public int[] red1priorities;
     public int[] red2priorities;
     public int[] green1priorities;
@@ -34,24 +34,24 @@ public class CarrierScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         int size = 10; //depends on the number of behaviour trees for which we set up priorities.
-        red1traits = new int[4];
-        red2traits = new int[4];
-        green1traits = new int[4];
-        green2traits = new int[4];
-        blue1traits = new int[4];
-        blue2traits = new int[4];
+        red1traits = new string[4];
+        red2traits = new string[4];
+        green1traits = new string[4];
+        green2traits = new string[4];
+        blue1traits = new string[4];
+        blue2traits = new string[4];
         red1priorities = new int[size];
         red2priorities = new int[size];
         green1priorities = new int[size];
         green2priorities = new int[size];
         blue1priorities = new int[size];
         blue2priorities = new int[size];
-        red1relationships = new int[5];
-        red2relationships = new int[5];
-        green1relationships = new int[5];
-        green2relationships = new int[5];
-        blue1relationships = new int[5];
-        blue2relationships = new int[5];
+        red1relationships = new int[6];
+        red2relationships = new int[6];
+        green1relationships = new int[6];
+        green2relationships = new int[6];
+        blue1relationships = new int[6];
+        blue2relationships = new int[6];
 
     }
 	
@@ -100,7 +100,7 @@ public class CarrierScript : MonoBehaviour {
     }
 
     //Adding traits to actors, in RGB order, R1 to B2.
-    public void SetTrait (int trait, int character, int number)
+    public void SetTrait (string trait, int character, int number)
     {
         if (character == 1)
         {
@@ -138,27 +138,27 @@ public class CarrierScript : MonoBehaviour {
     {
         if (character == 1)
         {
-            red1relationships[target] = status;
+            red1relationships[target-1] = status;
         }
         else if (character == 2)
         {
-            red2relationships[target] = status;
+            red2relationships[target-1] = status;
         }
         else if (character == 3)
         {
-            green1relationships[target] = status;
+            green1relationships[target-1] = status;
         }
         else if (character == 4)
         {
-            green2relationships[target] = status;
+            green2relationships[target-1] = status;
         }
         else if (character == 5)
         {
-            blue1relationships[target] = status;
+            blue1relationships[target-1] = status;
         }
         else if (character == 6)
         {
-            blue2relationships[target] = status;
+            blue2relationships[target-1] = status;
         }
         else
         {
