@@ -13,7 +13,75 @@ public class FriendEnemyButton : MonoBehaviour {
     void Start () {
         itself.GetComponentInChildren<Text>().text = tab.text;
         itself.image.color = Color.white;
-	}
+        //Check what's already stored on the carrier.
+        if (character==1)
+        {
+            int index = target - 1;
+            if (carrier.GetComponent<CarrierScript>().red1relationships[index]==1)
+            {
+                itself.image.color = Color.green;
+            }
+            else if (carrier.GetComponent<CarrierScript>().red1relationships[index] == 2)
+            {
+                itself.image.color = Color.red;
+            }
+        }
+        if (character == 2)
+        {
+            if (carrier.GetComponent<CarrierScript>().red2relationships[target - 1] == 1)
+            {
+                itself.image.color = Color.green;
+            }
+            else if (carrier.GetComponent<CarrierScript>().red2relationships[target - 1] == 2)
+            {
+                itself.image.color = Color.red;
+            }
+        }
+        if (character == 3)
+        {
+            if (carrier.GetComponent<CarrierScript>().green1relationships[target - 1] == 1)
+            {
+                itself.image.color = Color.green;
+            }
+            else if (carrier.GetComponent<CarrierScript>().green2relationships[target - 1] == 2)
+            {
+                itself.image.color = Color.red;
+            }
+        }
+        if (character == 4)
+        {
+            if (carrier.GetComponent<CarrierScript>().green2relationships[target - 1] == 1)
+            {
+                itself.image.color = Color.green;
+            }
+            else if (carrier.GetComponent<CarrierScript>().green2relationships[target - 1] == 2)
+            {
+                itself.image.color = Color.red;
+            }
+        }
+        if (character == 5)
+        {
+            if (carrier.GetComponent<CarrierScript>().blue1relationships[target - 1] == 1)
+            {
+                itself.image.color = Color.green;
+            }
+            else if (carrier.GetComponent<CarrierScript>().blue1relationships[target - 1] == 2)
+            {
+                itself.image.color = Color.red;
+            }
+        }
+        if (character == 6)
+        {
+            if (carrier.GetComponent<CarrierScript>().blue2relationships[target - 1] == 1)
+            {
+                itself.image.color = Color.green;
+            }
+            else if (carrier.GetComponent<CarrierScript>().blue2relationships[target - 1] == 2)
+            {
+                itself.image.color = Color.red;
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

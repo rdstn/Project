@@ -12,6 +12,7 @@ public class NameField : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        //See if we loaded in a value for this from the carrier.
             if (tabnumber == 1)
             {
                 itself.text = carrier.GetComponent<CarrierScript>().red1name;
@@ -36,10 +37,6 @@ public class NameField : MonoBehaviour {
             {
                 itself.text = carrier.GetComponent<CarrierScript>().blue2name;
             }
-            if (itself.text == null)
-        {
-            itself.text = "Input name";
-        }
     }
 
     public void Change ()

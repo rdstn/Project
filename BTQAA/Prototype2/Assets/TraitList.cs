@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 using UnityEngine.UI;
 
 public class TraitList : MonoBehaviour
@@ -16,17 +17,88 @@ public class TraitList : MonoBehaviour
     {
         itself.GetComponentInChildren<Text>().text = trait;
         itself.image.color = Color.white;
+        if (character==1)
+        {
+            //Check if we have the trait already stored.
+            if (Array.IndexOf<string>(carrier.GetComponent<CarrierScript>().red1traits,trait) != -1)
+            {
+                set = true;
+                opposite.interactable = false;
+                opposite.image.color = Color.red;
+                itself.image.color = Color.green;
+            }
+        }
+        if (character==2)
+        {
+            if (Array.IndexOf<string>(carrier.GetComponent<CarrierScript>().red2traits, trait) != -1)
+            {
+                set = true;
+                opposite.interactable = false;
+                opposite.image.color = Color.red;
+                itself.image.color = Color.green;
+            }
+        }
+        if (character==3)
+        {
+            if (Array.IndexOf<string>(carrier.GetComponent<CarrierScript>().green1traits, trait) != -1)
+            {
+                set = true;
+                opposite.interactable = false;
+                opposite.image.color = Color.red;
+                itself.image.color = Color.green;
+            }
+        }
+        if (character==4)
+        {
+            if (Array.IndexOf<string>(carrier.GetComponent<CarrierScript>().green2traits, trait) != -1)
+            {
+                set = true;
+                opposite.interactable = false;
+                opposite.image.color = Color.red;
+                itself.image.color = Color.green;
+            }
+        }
+        if (character==5)
+        {
+            if (Array.IndexOf<string>(carrier.GetComponent<CarrierScript>().blue1traits, trait) != -1)
+            {
+                set = true;
+                opposite.interactable = false;
+                opposite.image.color = Color.red;
+                itself.image.color = Color.green;
+            }
+        }
+        if (character==6)
+        {
+            if (Array.IndexOf<string>(carrier.GetComponent<CarrierScript>().blue2traits, trait) != -1)
+            {
+                set = true;
+                opposite.interactable = false;
+                opposite.image.color = Color.red;
+                itself.image.color = Color.green;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (carrier.GetComponent<CarrierScript>().traitcounters[character-1]==3)
+        //Check that we can only set up to 4 traits.
+        if (carrier.GetComponent<CarrierScript>().traitcounters[character-1]==4)
         {
-            if (set== false)
+            if (set == false)
             {
                 itself.image.color = Color.red;
                 itself.interactable = false;
+            }
+        }
+        //If we have less than 4 traits (or somehow got 4+) and we don't have the opposite set, enable the button.
+        else
+        {
+            if (set == false && opposite.GetComponent<TraitList>().set == false)
+            {
+                itself.image.color = Color.white;
+                itself.interactable = true;
             }
         }
     }

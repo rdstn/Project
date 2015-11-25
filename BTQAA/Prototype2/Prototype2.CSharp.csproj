@@ -71,6 +71,7 @@
     <Compile Include="Assets\CarrierScript.cs" />
     <Compile Include="Assets\FriendEnemyButton.cs" />
     <Compile Include="Assets\NameField.cs" />
+    <Compile Include="Assets\PriorityButton.cs" />
     <Compile Include="Assets\SORelationship.cs" />
     <Compile Include="Assets\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\Menu\LoadOnClick.cs" />
