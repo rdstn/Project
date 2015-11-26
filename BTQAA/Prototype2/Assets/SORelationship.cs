@@ -9,6 +9,11 @@ public class SORelationship : MonoBehaviour
     public int target; //References the S.O. with whom the relationship is.
     public GameObject carrier;
 
+    void Start()
+    {
+        carrier = GameObject.Find("Carrier");
+    }
+
     public void Change(int input)
     {
         carrier.GetComponent<CarrierScript>().SetRelationship(input, target, character);

@@ -5,6 +5,7 @@ using System.Collections;
 [System.Serializable]
 public class CarrierScript : MonoBehaviour {
 
+    public GameObject itself; //Refernces the carrier this script is attached to.
     public static CarrierScript current;
     public int[] traitcounters;
     public string[] red1traits;
@@ -48,7 +49,7 @@ public class CarrierScript : MonoBehaviour {
     //We need to keep this object on loading the scene.
     void Awake()
     {
-        DontDestroyOnLoad (transform.gameObject);
+        DontDestroyOnLoad (itself);
         int size = 7; //depends on the number of behaviour trees for which we set up priorities.
         int[] traitcounters = new int[] { 0, 0, 0, 0, 0, 0 }; //Keep in store how many traits does a character have. We want a limit of 4.
         red1traits = new string[4];

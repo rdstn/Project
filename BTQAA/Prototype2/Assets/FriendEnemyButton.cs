@@ -11,6 +11,7 @@ public class FriendEnemyButton : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        carrier = GameObject.Find("Carrier");
         itself.GetComponentInChildren<Text>().text = tab.text;
         itself.image.color = Color.white;
         //Check what's already stored on the carrier.

@@ -10,6 +10,7 @@ public class TabName : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        carrier = GameObject.Find("Carrier");
         if (tabnumber == 1) {
             itself.text = carrier.GetComponent<CarrierScript>().red1name;
             if (itself.text == "")

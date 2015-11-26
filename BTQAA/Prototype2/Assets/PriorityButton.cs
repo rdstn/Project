@@ -13,6 +13,7 @@ public class PriorityButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        carrier = GameObject.Find("Carrier");
         itself.GetComponentInChildren<Text>().text = priority.ToString();
         if (character_status == 0)
         {
@@ -60,14 +61,12 @@ public class PriorityButton : MonoBehaviour {
             priority++;
             itself.GetComponentInChildren<Text>().text = priority.ToString();
             carrier.GetComponent<CarrierScript>().ChangePriority(priority, tree, character, character_status);
-            Debug.Log(carrier.GetComponent<CarrierScript>().red1priorities[tree,character_status]);
         }
         else if (priority == 5)
         {
             priority = 0;
             itself.GetComponentInChildren<Text>().text = "-";
             carrier.GetComponent<CarrierScript>().ChangePriority(priority, tree, character, character_status);
-            Debug.Log(carrier.GetComponent<CarrierScript>().red1priorities[tree, character_status]);
         }
         else
         {

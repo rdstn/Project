@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,11 +10,7 @@ public class GuestManager : EventManager {
 	public float newAffairChance;
 	public float confessAffairChance;
 	public float gossipChance;
-    //Lists all traits. Can be edited directly via editor, or modified via Authoring GUI in-game.
-    //Traits act as modifiers on the likelihood and/or outcomes of other behaviour trees.
-    public string[] traits;
-    //Lists all priorities. Those act as modifiers on the likelihood of adding other behaviour trees.
-    public float[] priorities = new float[10];
+    public int character;
 
 	public float waitTime;
 
@@ -39,11 +36,19 @@ public class GuestManager : EventManager {
 	private bool hadAffair;
 
 	private bool confessed = false;
-	//private bool panic = false;
+    //private bool panic = false;
+
+    private GameObject carrier;
+    private double[] priorities_actual; //Used to pick behaviour trees to add to the queue.
+    private string[] traits; //Used to store the traits in a more convenient way.
+    private int[,] priority_defines; //Used to read author-assigned priorities.
+    private int[] relationships; //Likewise, for relationships.
+    private string actor_name; //Likewise, for name.
 
 	protected override void Awake ()
 	{
 		base.Awake ();
+        carrier = GameObject.Find("Carrier");
 	}
 
 	// Use this for initialization
@@ -53,7 +58,8 @@ public class GuestManager : EventManager {
 		AddTree(new FindRoom(this, "receptionist", receptionist, reception), 8);
 		AddTree(new WaitTree(this, waitTime), 50);
 		//AddTree(new SecretRomance(this, "receptionist", receptionist), 11);
-	}
+
+    }
 	
 	// Update is called once per frame
 	protected override void Update () {
@@ -101,10 +107,10 @@ public class GuestManager : EventManager {
 		}
 
 		//Consider new affair
-		if(Random.value < affairChance){
+		if(UnityEngine.Random.value < affairChance){
 			GameObject romanceTarget;
 
-			if((knowledgeBase.Affairs(gameObject, SO) >= affairLimit || Random.value > newAffairChance) && knowledgeBase.Affairs(gameObject, SO) >= 1){
+			if((knowledgeBase.Affairs(gameObject, SO) >= affairLimit || UnityEngine.Random.value > newAffairChance) && knowledgeBase.Affairs(gameObject, SO) >= 1){
 				//Use current target
 				romanceTarget = knowledgeBase.RandomAffair(gameObject, SO);
 
@@ -119,18 +125,18 @@ public class GuestManager : EventManager {
 		}
 
 		//Confess?
-		if(!confessed && knowledgeBase.Affairs(gameObject, SO) >= 1 && Random.value < confessAffairChance){
+		if(!confessed && knowledgeBase.Affairs(gameObject, SO) >= 1 && UnityEngine.Random.value < confessAffairChance){
 			confessed = true;
 			AddTree(new ConfessAffair(this, knowledgeBase.RandomAffair(gameObject, SO)), 19);
 		}
 
-		if(Random.value < gossipChance){
+		if(UnityEngine.Random.value < gossipChance){
 			AddGossip();
 		}
 	}
 
 	private void AddRandomFluffTree(){
-		int randNumber = Random.Range(0, 20);
+		int randNumber = UnityEngine.Random.Range(0, 20);
 		if(randNumber < 1){
 			AddTree(new Toilet(this, 5, 10, RandomFromArray(toilet)), 5);
 		}
@@ -163,6 +169,6 @@ public class GuestManager : EventManager {
 	}
 
 	private GameObject RandomFromArray(GameObject[] array){
-		return array[Random.Range(0, array.Length)];
+		return array[UnityEngine.Random.Range(0, array.Length)];
 	}
 }

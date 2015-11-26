@@ -17,6 +17,7 @@ public class TraitList : MonoBehaviour
     {
         itself.GetComponentInChildren<Text>().text = trait;
         itself.image.color = Color.white;
+        carrier = GameObject.Find("Carrier");
         if (character==1)
         {
             //Check if we have the trait already stored.

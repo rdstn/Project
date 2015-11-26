@@ -12,8 +12,9 @@ public class NameField : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        carrier = GameObject.Find("Carrier");
         //See if we loaded in a value for this from the carrier.
-            if (tabnumber == 1)
+        if (tabnumber == 1)
             {
                 itself.text = carrier.GetComponent<CarrierScript>().red1name;
             }
