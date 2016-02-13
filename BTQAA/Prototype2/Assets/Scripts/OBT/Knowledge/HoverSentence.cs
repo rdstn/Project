@@ -4,6 +4,7 @@ using System.Collections;
 public class HoverSentence : MonoBehaviour {
 	
 	private GameObject target; //What to hover above
+    private GameObject log; //Where to display the information
 	
 	public Sprite smallBackground;
 	public Sprite largeBackground;
@@ -34,7 +35,13 @@ public class HoverSentence : MonoBehaviour {
 	private float height = 0.5f;
 
 	void Start(){
-	}
+        
+    }
+
+    void Awake()
+    {
+        log = GameObject.Find("Log");
+    }
 
 	void Update () {
 		Reposition ();
@@ -55,7 +62,7 @@ public class HoverSentence : MonoBehaviour {
 		
 		this.target = target;
 		gameObject.transform.parent = target.transform;
-		
+
 		HoverSentence[] hovers = target.transform.GetComponentsInChildren<HoverSentence>();
 		height = (hovers.Length) * 0.5f;
 		
@@ -63,7 +70,7 @@ public class HoverSentence : MonoBehaviour {
 		{
 		case Sentence.Verb.Murder:
 			verb.sprite = murdered;
-			break;
+            break;
 		case Sentence.Verb.Shocked:
 			verb.sprite = shocked;
 			break;
@@ -78,7 +85,8 @@ public class HoverSentence : MonoBehaviour {
 			break;
 		case Sentence.Verb.Love:
 			verb.sprite = love;
-			break;
+            log.GetComponent<log>().Happening("Love is in the air for " + target.GetComponent<AuthoredGuestManager>().actor_name + "!", true);
+            break;
 		case Sentence.Verb.Arrow:
 			verb.sprite = arrow;
 			break;
@@ -87,22 +95,28 @@ public class HoverSentence : MonoBehaviour {
 			break;
 		case Sentence.Verb.Pool:
 			verb.sprite = pool;
-			break;
+            log.GetComponent<log>().Happening(target.GetComponent<AuthoredGuestManager>().actor_name + " is playing pool.", false);
+            break;
 		case Sentence.Verb.Beer:
 			verb.sprite = beer;
-			break;
+            log.GetComponent<log>().Happening(target.GetComponent<AuthoredGuestManager>().actor_name + " is drinking the day away.", false);
+            break;
 		case Sentence.Verb.Burger:
 			verb.sprite = burger;
-			break;
+            log.GetComponent<log>().Happening(target.GetComponent<AuthoredGuestManager>().actor_name + " is eating.", false);
+            break;
 		case Sentence.Verb.Toilet:
 			verb.sprite = toilet;
+            log.GetComponent<log>().Happening(target.GetComponent<AuthoredGuestManager>().actor_name + " is having a meal.", false);
 			break;
 		case Sentence.Verb.Sleep:
 			verb.sprite = sleep;
-			break;
+            log.GetComponent<log>().Happening(target.GetComponent<AuthoredGuestManager>().actor_name + " is resting.", false);
+            break;
 		case Sentence.Verb.TV:
 			verb.sprite = tv;
-			break;
+            log.GetComponent<log>().Happening(target.GetComponent<AuthoredGuestManager>().actor_name + " is watching TV.", false);
+            break;
 		case Sentence.Verb.police:
 			verb.sprite = police;
 			break;

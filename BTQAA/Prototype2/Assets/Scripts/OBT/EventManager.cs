@@ -11,6 +11,7 @@ public abstract class EventManager : MonoBehaviour {
 	private bool alive = true;
 
 	private GameObject killer;
+    private GameObject log;
 
 	public struct PrioritisedBehaviour{
 		public BehaviourTree behaviourTree;
@@ -25,7 +26,8 @@ public abstract class EventManager : MonoBehaviour {
 		GetComponentInChildren<SpriteRenderer>().sprite = liveSprite;
 		actions = GetComponent<Actions>();
 		knowledgeBase = new KnowledgeBase(this);
-	}
+        log = GameObject.Find("Log");
+    }
 
 	protected virtual void Start(){
 
@@ -36,9 +38,7 @@ public abstract class EventManager : MonoBehaviour {
 	}
 
 	public virtual void TreeCompleted(bool success, BehaviourTree tree){
-		//Debug.Log (gameObject);
-		//Debug.Log ("Completed Tree:");
-		//Debug.Log (tree);
+		//Debug.Log (gameObject + " completed tree " + tree);
 		behaviourQueue.RemoveAt(0);
 		if(behaviourQueue.Count >= 1 && behaviourQueue[0].behaviourTree != null){
 			behaviourQueue[0].behaviourTree.Start();
@@ -52,11 +52,9 @@ public abstract class EventManager : MonoBehaviour {
 	protected void AddTree(PrioritisedBehaviour prioritisedBehaviour){
 		if(alive){
 
-			//Debug.Log (gameObject);
-			//Debug.Log ("Began Tree:");
-			//Debug.Log (prioritisedBehaviour.behaviourTree);
+           // Debug.Log (gameObject + " began Tree: " + prioritisedBehaviour.behaviourTree);
 
-			for(int i = 0; i < behaviourQueue.Count; i++){
+            for (int i = 0; i < behaviourQueue.Count; i++){
 				if(behaviourQueue[i].priority < prioritisedBehaviour.priority){
 					if(i == 0){
 						behaviourQueue[0].behaviourTree.root.Interrupt();
@@ -71,7 +69,8 @@ public abstract class EventManager : MonoBehaviour {
 
 			behaviourQueue.Add(prioritisedBehaviour);
 			if(behaviourQueue.Count == 1 && prioritisedBehaviour.behaviourTree != null){
-				behaviourQueue[0].behaviourTree.Start();
+                Debug.Log(gameObject + " began Tree: " + prioritisedBehaviour.behaviourTree);
+                behaviourQueue[0].behaviourTree.Start();
 			}
 
 		}
@@ -92,8 +91,8 @@ public abstract class EventManager : MonoBehaviour {
 			return true;
 		}
 		else{
-			Debug.Log (behaviourQueue[0].priority);
-			Debug.Log(priority);
+			//Debug.Log (behaviourQueue[0].priority);
+			//Debug.Log(priority);
 			return false;
 		}
 	}
@@ -110,7 +109,8 @@ public abstract class EventManager : MonoBehaviour {
 	public void Kill (GameObject killer){
 		alive = false;
 		this.killer = killer;
-		if(behaviourQueue.Count > 0){
+        log.GetComponent<log>().Happening(killer.GetComponent<AuthoredGuestManager>().actor_name + " has murder on their mind.", true);
+        if (behaviourQueue.Count > 0){
 			behaviourQueue[0].behaviourTree.root.Interrupt();
 			behaviourQueue.RemoveRange(0, behaviourQueue.Count);
 		}

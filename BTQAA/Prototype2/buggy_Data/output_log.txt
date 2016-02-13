@@ -2,12 +2,12 @@ Mono path[0] = 'D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/buggy_Data
 Mono path[1] = 'D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/buggy_Data/Mono'
 Mono config path = 'D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/buggy_Data/Mono/etc'
 PlayerConnection initialized from D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/buggy_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55471
-Multi-casting "[IP] 10.240.196.95 [Port] 55471 [Flags] 3 [Guid] 4106534284 [EditorId] 842109712 [Version] 1048832 [Id] WindowsPlayer(LenovoY580-Rado) [Debug] 1" to [225.0.0.222:54997]...
-Waiting for connection from host on [10.240.196.95:55471]...
-Timed out. Continuing without host connection.
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56284
-PlayerConnection already initialized - listening to [10.240.196.95:55471]
+PlayerConnection initialized network socket : 0.0.0.0 55394
+Multi-casting "[IP] 10.240.196.95 [Port] 55394 [Flags] 3 [Guid] 3028541741 [EditorId] 3570167660 [Version] 1048832 [Id] WindowsPlayer(LenovoY580-Rado) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [10.240.196.95:55394]...
+PlayerConnection accepted from [10.240.196.95] handle:0x1f8
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56741
+PlayerConnection already initialized - listening to [10.240.196.95:55394]
 Initialize engine version: 5.2.1f1 (44735ea161b3)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -25,12 +25,133 @@ Loading D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed
 Platform assembly: D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.049 seconds
+- Completed reload, in  0.087 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
 Platform assembly: D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\buggy_Data\Managed\System.dll (this message is harmless)
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 983c -> priority: 1 
-  Thread -> id: 9848 -> priority: 1 
+  Thread -> id: 1e74 -> priority: 1 
+  Thread -> id: 1784 -> priority: 1 
+The class named 'SaveLoad' is abstract. The script class can't be abstract!
+ 
+(Filename: C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp Line: 1496)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.874887 ms
+System memory in use before: 21.2 MB.
+System memory in use after: 21.4 MB.
+
+Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 3539.
+Total: 3.340823 ms (FindLiveObjects: 0.128510 ms CreateObjectMapping: 0.198120 ms MarkObjects: 2.985189 ms  DeleteObjects: 0.028111 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 12.685045 ms
+System memory in use before: 23.3 MB.
+System memory in use after: 23.0 MB.
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 1107.
+Total: 0.547507 ms (FindLiveObjects: 0.072733 ms CreateObjectMapping: 0.026326 ms MarkObjects: 0.432830 ms  DeleteObjects: 0.014725 ms)
+
+Character 5Who has a priority for love 0.1, is now in affair, because of randval. 0.00603056
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+AuthoredGuestManager:TreeCompleted(Boolean, BehaviourTree) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\AuthoredGuestManager.cs:314)
+BehaviourTree:Finished(Boolean) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:58)
+Root:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:26)
+Sequence:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:19)
+SetRandomRoom:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\SetRandomRoom.cs:27)
+Sequence:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:13)
+Root:Poke() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:11)
+BehaviourTree:Start() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:65)
+EventManager:AddTree(PrioritisedBehaviour) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:74)
+EventManager:AddTree(BehaviourTree, Int32) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:84)
+AuthoredGuestManager:AddRandomFluffTree() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\AuthoredGuestManager.cs:367)
+AuthoredGuestManager:TreeCompleted(Boolean, BehaviourTree) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\AuthoredGuestManager.cs:306)
+BehaviourTree:Finished(Boolean) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:58)
+Root:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:23)
+Wait:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\Wait.cs:35)
+<WaitRoutine>c__Iterator2:MoveNext() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Actions.cs:64)
+ 
+(Filename: D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/Assets/AuthoredGuestManager.cs Line: 314)
+
+15
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+EventManager:PushTree(BehaviourTree, Int32, Boolean) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:95)
+AddBehaviourTree`1:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\AddBehaviourTree.cs:35)
+Sequence:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:13)
+Root:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:17)
+LinkTree`1:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\LinkTree.cs:25)
+Sequence:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:22)
+Follow:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\Follow.cs:33)
+<FollowRoutine>c__Iterator5:MoveNext() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Actions.cs:171)
+UnityEngine.MonoBehaviour:StartCoroutine(String, Object)
+Actions:Follow(GameObject, Follow, Single) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Actions.cs:147)
+Follow:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\Follow.cs:24)
+Sequence:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:13)
+Root:Poke() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:11)
+BehaviourTree:Start() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:65)
+EventManager:AddTree(PrioritisedBehaviour) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:74)
+EventManager:AddTree(BehaviourTree, Int32) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:84)
+GuestManager:AddRandomFluffTree() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Characters\GuestManager.cs:150)
+GuestManager:TreeCompleted(Boolean, BehaviourTree) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Characters\GuestManager.cs:106)
+BehaviourTree:Finished(Boolean) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:58)
+Root:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:26)
+Sequence:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:19)
+SetRandomRoom:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\SetRandomRoom.cs:27)
+Sequence:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:13)
+Root:Poke() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:11)
+BehaviourTree:Start() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:65)
+EventManager:AddTree(PrioritisedBehaviour) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:74)
+EventManager:AddTree(BehaviourTree, Int32) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:84)
+GuestManager:AddRandomFluffTree() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Characters\GuestManager.cs:147)
+GuestManager:TreeCompleted(Boolean, BehaviourTree) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Characters\GuestManager.cs:106)
+BehaviourTree:Finished(Boolean) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:58)
+Root:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:23)
+Wait:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\Wait.cs:35)
+<WaitRoutine>c__Iterator2:MoveNext() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Actions.cs:64)
+ 
+(Filename: D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/Assets/Scripts/OBT/EventManager.cs Line: 95)
+
+3
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+EventManager:PushTree(BehaviourTree, Int32, Boolean) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:96)
+AddBehaviourTree`1:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\AddBehaviourTree.cs:35)
+Sequence:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:13)
+Root:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:17)
+LinkTree`1:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\LinkTree.cs:25)
+Sequence:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:22)
+Follow:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\Follow.cs:33)
+<FollowRoutine>c__Iterator5:MoveNext() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Actions.cs:171)
+UnityEngine.MonoBehaviour:StartCoroutine(String, Object)
+Actions:Follow(GameObject, Follow, Single) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Actions.cs:147)
+Follow:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\Follow.cs:24)
+Sequence:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:13)
+Root:Poke() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:11)
+BehaviourTree:Start() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:65)
+EventManager:AddTree(PrioritisedBehaviour) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:74)
+EventManager:AddTree(BehaviourTree, Int32) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:84)
+GuestManager:AddRandomFluffTree() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Characters\GuestManager.cs:150)
+GuestManager:TreeCompleted(Boolean, BehaviourTree) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Characters\GuestManager.cs:106)
+BehaviourTree:Finished(Boolean) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:58)
+Root:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:26)
+Sequence:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:19)
+SetRandomRoom:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\SetRandomRoom.cs:27)
+Sequence:Poke(Parent) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs:13)
+Root:Poke() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:11)
+BehaviourTree:Start() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:65)
+EventManager:AddTree(PrioritisedBehaviour) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:74)
+EventManager:AddTree(BehaviourTree, Int32) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\EventManager.cs:84)
+GuestManager:AddRandomFluffTree() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Characters\GuestManager.cs:147)
+GuestManager:TreeCompleted(Boolean, BehaviourTree) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Characters\GuestManager.cs:106)
+BehaviourTree:Finished(Boolean) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs:58)
+Root:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs:23)
+Wait:ReceiveStatus(Status) (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaves\Wait.cs:35)
+<WaitRoutine>c__Iterator2:MoveNext() (at D:\CS\Year4\PROJECT\UnityGames\games\BTQAA\Prototype2\Assets\Scripts\OBT\Actions.cs:64)
+ 
+(Filename: D:/CS/Year4/PROJECT/UnityGames/games/BTQAA/Prototype2/Assets/Scripts/OBT/EventManager.cs Line: 96)
+
+Waiting for finish

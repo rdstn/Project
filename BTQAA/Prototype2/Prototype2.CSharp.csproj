@@ -57,12 +57,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -74,16 +68,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AuthoredGuestManager.cs" />
-    <Compile Include="Assets\CarrierScript.cs" />
-    <Compile Include="Assets\FriendEnemyButton.cs" />
-    <Compile Include="Assets\NameField.cs" />
-    <Compile Include="Assets\PriorityButton.cs" />
-    <Compile Include="Assets\SORelationship.cs" />
-    <Compile Include="Assets\SaveLoad.cs" />
+    <Compile Include="Assets\Scripts\Menu\FriendEnemyButton.cs" />
     <Compile Include="Assets\Scripts\Menu\LoadOnClick.cs" />
+    <Compile Include="Assets\Scripts\Menu\NameField.cs" />
     <Compile Include="Assets\Scripts\Menu\PlaybackSpeed.cs" />
+    <Compile Include="Assets\Scripts\Menu\PriorityButton.cs" />
+    <Compile Include="Assets\Scripts\Menu\SORelationship.cs" />
+    <Compile Include="Assets\Scripts\Menu\SaveLoad.cs" />
+    <Compile Include="Assets\Scripts\Menu\TabName.cs" />
     <Compile Include="Assets\Scripts\Menu\Timer.cs" />
+    <Compile Include="Assets\Scripts\Menu\TraitList.cs" />
+    <Compile Include="Assets\Scripts\Menu\log.cs" />
     <Compile Include="Assets\Scripts\OBT\Actions.cs" />
     <Compile Include="Assets\Scripts\OBT\Behaviour Trees\BehaviourTree.cs" />
     <Compile Include="Assets\Scripts\OBT\Behaviour Trees\Nodes\Leaf_Instant.cs" />
@@ -119,6 +114,8 @@
     <Compile Include="Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Root.cs" />
     <Compile Include="Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Selecter.cs" />
     <Compile Include="Assets\Scripts\OBT\Behaviour Trees\Nodes\Parents\Sequence.cs" />
+    <Compile Include="Assets\Scripts\OBT\Characters\AuthoredGuestManager.cs" />
+    <Compile Include="Assets\Scripts\OBT\Characters\CarrierScript.cs" />
     <Compile Include="Assets\Scripts\OBT\Characters\DetectiveManager.cs" />
     <Compile Include="Assets\Scripts\OBT\Characters\Generic\Bar.cs" />
     <Compile Include="Assets\Scripts\OBT\Characters\Generic\CallPolice.cs" />
@@ -171,8 +168,8 @@
     <Compile Include="Assets\Scripts\OBT\Knowledge\KnowledgeBase.cs" />
     <Compile Include="Assets\Scripts\OBT\Knowledge\Sentence.cs" />
     <Compile Include="Assets\Scripts\Scripted\TimeKeeper.cs" />
-    <Compile Include="Assets\TabName.cs" />
-    <Compile Include="Assets\TraitList.cs" />
+    <Compile Include="Assets\Scripts\camera.cs" />
+    <Compile Include="Assets\name_icon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
