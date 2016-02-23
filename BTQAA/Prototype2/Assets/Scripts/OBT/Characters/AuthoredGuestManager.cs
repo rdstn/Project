@@ -20,6 +20,8 @@ public class AuthoredGuestManager : EventManager
     public GameObject SO;
 
     public GameObject[] otherGuests;
+    public GameObject[] friends;
+    public GameObject[] enemies;
 
     public GameObject[] toilet;
     public GameObject[] snooker;
@@ -52,6 +54,8 @@ public class AuthoredGuestManager : EventManager
         base.Awake();
         carrier = GameObject.Find("Carrier");
         log = GameObject.Find("Log");
+        friends = new GameObject[6];
+        enemies = new GameObject[6];
         priorities_actual = new double[7];
         if (character == 1)
         {
@@ -99,6 +103,54 @@ public class AuthoredGuestManager : EventManager
         {
             Debug.Log("Adding character data to unknown character, numbered " + character);
         }
+        if (relationships[0]==1)
+        {
+            friends[0] = GameObject.Find("red_male");
+        }
+        else if (relationships[0]==2)
+        {
+            enemies[0] = GameObject.Find("red_male");
+        }
+        if (relationships[1] == 1)
+        {
+            friends[1] = GameObject.Find("red_female");
+        }
+        else if (relationships[1] == 2)
+        {
+            enemies[1] = GameObject.Find("red_female");
+        }
+        if (relationships[2] == 1)
+        {
+            friends[2] = GameObject.Find("green_male");
+        }
+        else if (relationships[2] == 2)
+        {
+            enemies[2] = GameObject.Find("green_male");
+        }
+        if (relationships[3] == 1)
+        {
+            friends[3] = GameObject.Find("green_female");
+        }
+        else if (relationships[3] == 2)
+        {
+            enemies[3] = GameObject.Find("green_female");
+        }
+        if (relationships[4] == 1)
+        {
+            friends[4] = GameObject.Find("blue_male");
+        }
+        else if (relationships[4] == 2)
+        {
+            enemies[4] = GameObject.Find("blue_male");
+        }
+        if (relationships[5] == 1)
+        {
+            friends[5] = GameObject.Find("blue_female");
+        }
+        else if (relationships[5] == 2)
+        {
+            enemies[5] = GameObject.Find("blue_female");
+        }
     }
 
     // Use this for initialization
@@ -123,7 +175,7 @@ public class AuthoredGuestManager : EventManager
         {
             trait_score = trait_score - 0.5;
         }
-        priorities_actual[0] = 1 * priority_defines[0, 0] / 3 + trait_score;
+        priorities_actual[0] = 1.00 * (double)priority_defines[0, 0] / 3.00 + trait_score;
         if (priorities_actual[0]<0)
         {
             priorities_actual[0] = 0;
@@ -139,7 +191,7 @@ public class AuthoredGuestManager : EventManager
         {
             trait_score = trait_score - 0.5;
         }
-        priorities_actual[1] = 2 * priority_defines[1, 0] / 3 + trait_score;
+        priorities_actual[1] = 2.00 * (double)priority_defines[1, 0] / 3.00 + trait_score;
         if (priorities_actual[1] < 0)
         {
             priorities_actual[1] = 0;
@@ -155,7 +207,7 @@ public class AuthoredGuestManager : EventManager
         {
             trait_score = trait_score - 0.5;
         }
-        priorities_actual[2] = 1.5 * priority_defines[2, 0] / 3 + trait_score;
+        priorities_actual[2] = 1.5 * priority_defines[2, 0] / 3.00 + trait_score;
         if (priorities_actual[2] < 0)
         {
             priorities_actual[2] = 0;
@@ -172,7 +224,7 @@ public class AuthoredGuestManager : EventManager
         {
             trait_score = trait_score + 0.5;
         }
-        priorities_actual[3] = 2 * priority_defines[3, 0] / 3 + trait_score;
+        priorities_actual[3] = 2.00 * (double)priority_defines[3, 0] / 3.00 + trait_score;
         if (priorities_actual[3] < 0)
         {
             priorities_actual[3] = 0;
@@ -196,7 +248,7 @@ public class AuthoredGuestManager : EventManager
         {
             trait_score = trait_score - 0.5;
         }
-        priorities_actual[4] = 2 * priority_defines[4, 0] / 3 + trait_score;
+        priorities_actual[4] = 2.00 * (double)priority_defines[4, 0] / 3.00 + trait_score;
         if (priorities_actual[4] < 0)
         {
             priorities_actual[4] = 0;
@@ -220,7 +272,7 @@ public class AuthoredGuestManager : EventManager
         {
             trait_score = trait_score - 0.75;
         }
-        priorities_actual[5] = 3 * priority_defines[5, 0] / 3 + trait_score;
+        priorities_actual[5] = 3.00 * (double)priority_defines[5, 0] / 3.00 + trait_score;
         if (priorities_actual[5] < 0)
         {
             priorities_actual[5] = 0;
@@ -244,7 +296,9 @@ public class AuthoredGuestManager : EventManager
         {
             trait_score = trait_score - 0.25;
         }
-        priorities_actual[6] = 1 * priority_defines[6, 0] / 3 + trait_score;
+        priorities_actual[6] = 1.00 * (double)priority_defines[6, 0] / 3.00 + trait_score;
+        print(Array.IndexOf<string>(traits, "Amorous"));
+        print(priority_defines[6, 0] + " " + priorities_actual[6] + " " + actor_name);
         if (priorities_actual[6] < 0)
         {
             priorities_actual[6] = 0;
@@ -329,6 +383,11 @@ public class AuthoredGuestManager : EventManager
                 } while (romanceTarget == SO);
             }
 
+            //if (romanceTarget == null)
+            //{
+              //  do { romanceTarget = RandomFromArray(enemies); } while (romanceTarget == SO);
+            //}
+
             AddTree(new SecretRomance(this, "romanceTarget", romanceTarget), 15);
         }
 
@@ -353,37 +412,38 @@ public class AuthoredGuestManager : EventManager
         {
             prioritytotal += priorities_actual[i];
         }
-        float randNumber = UnityEngine.Random.Range(0, (float)prioritytotal);
+        double randNumber = UnityEngine.Random.Range(0, (float)prioritytotal);
         if (randNumber < priorities_actual[0])
         {
             AddTree(new Toilet(this, 5, 10, RandomFromArray(toilet)), 5);
         }
-        var priotemp = prioritystep;
+        var priotemp = prioritystep+priorities_actual[0];
         prioritystep += priorities_actual[0];
         if (randNumber < prioritystep+priorities_actual[1] && randNumber >= priotemp)
         {
             AddTree(new TV(this, 20, 30, hotelRoom), 2);
         }
-        priotemp = prioritystep;
+        priotemp = prioritystep+priorities_actual[1];
         prioritystep += priorities_actual[1];
         if (randNumber < prioritystep+priorities_actual[2] && randNumber >= priotemp)
         {
             AddTree(new Chill(this, 20, 30, hotelRoom), 2);
         }
-        priotemp = prioritystep;
+        priotemp = prioritystep+priorities_actual[2];
         prioritystep += priorities_actual[2];
         if (randNumber < prioritystep+priorities_actual[3] && randNumber >= priotemp)
         {
             var partner = RandomFromArray(otherGuests);
+            if (partner == null) { partner = RandomFromArray(enemies); }
             AddTree(new Snooker(this, RandomFromArray(snooker), partner), 4);
         }
-        priotemp = prioritystep;
+        priotemp = prioritystep+priorities_actual[3];
         prioritystep += priorities_actual[3];
         if (randNumber < prioritystep+priorities_actual[4] && randNumber >= priotemp)
         {
             AddTree(new Meal(this, 20, 30, RandomFromArray(restaurant)), 5);
         }
-        priotemp = prioritystep;
+        priotemp = prioritystep+priorities_actual[4];
         prioritystep += priorities_actual[4];
         if (randNumber < prioritystep+priorities_actual[5] && randNumber >= priotemp)
         {

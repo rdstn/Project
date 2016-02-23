@@ -5,8 +5,11 @@ public class ConfessAffair : BehaviourTree {
 
 	public ConfessAffair(EventManager eventManager, GameObject affair) : base(eventManager){
 		AddToBlackboard("affair", affair);
-		AddToBlackboard("SO", ((GuestManager) eventManager).SO);
-		AddToBlackboard("sentence", new Sentence(eventManager.gameObject, Sentence.Verb.Love, affair));
+        //Authored
+		AddToBlackboard("SO", ((AuthoredGuestManager) eventManager).SO);
+        //Unauthored
+        //AddToBlackboard("SO", ((GuestManager)eventManager).SO);
+        AddToBlackboard("sentence", new Sentence(eventManager.gameObject, Sentence.Verb.Love, affair));
 	}
 
 	public override void constructTree ()

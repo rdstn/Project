@@ -103,11 +103,11 @@ public class HoverSentence : MonoBehaviour {
             break;
 		case Sentence.Verb.Burger:
 			verb.sprite = burger;
-            log.GetComponent<log>().Happening(target.GetComponent<AuthoredGuestManager>().actor_name + " is eating.", false);
+            log.GetComponent<log>().Happening(target.GetComponent<AuthoredGuestManager>().actor_name + " is having a meal.", false);
             break;
 		case Sentence.Verb.Toilet:
 			verb.sprite = toilet;
-            log.GetComponent<log>().Happening(target.GetComponent<AuthoredGuestManager>().actor_name + " is having a meal.", false);
+            log.GetComponent<log>().Happening(target.GetComponent<AuthoredGuestManager>().actor_name + " is visiting the restroom.", false);
 			break;
 		case Sentence.Verb.Sleep:
 			verb.sprite = sleep;

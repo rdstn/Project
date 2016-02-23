@@ -6,8 +6,8 @@ public class camera : MonoBehaviour
 
     bool intTopView;
     public int scrollArea = 1;
-    public int scrollSpeed = 100;
-    public int dragSpeed = 100;
+    public int scrollSpeed = 1;
+    public int dragSpeed = 1;
     Transform myTransform;
 
     // Use this for initialization
