@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class AuthoredGuestManager : EventManager
 {
@@ -20,8 +21,8 @@ public class AuthoredGuestManager : EventManager
     public GameObject SO;
 
     public GameObject[] otherGuests;
-    public GameObject[] friends;
-    public GameObject[] enemies;
+    public List<GameObject> friends;
+    public List<GameObject> enemies;
 
     public GameObject[] toilet;
     public GameObject[] snooker;
@@ -54,8 +55,6 @@ public class AuthoredGuestManager : EventManager
         base.Awake();
         carrier = GameObject.Find("Carrier");
         log = GameObject.Find("Log");
-        friends = new GameObject[6];
-        enemies = new GameObject[6];
         priorities_actual = new double[7];
         if (character == 1)
         {
@@ -103,53 +102,55 @@ public class AuthoredGuestManager : EventManager
         {
             Debug.Log("Adding character data to unknown character, numbered " + character);
         }
-        if (relationships[0]==1)
+
+        //Get friends and enemies.
+        if (relationships[0]==1 && character!=1)
         {
-            friends[0] = GameObject.Find("red_male");
+            friends.Add(GameObject.Find("red_male"));
         }
-        else if (relationships[0]==2)
+        else if (relationships[0]==2 && character != 1)
         {
-            enemies[0] = GameObject.Find("red_male");
+            enemies.Add(GameObject.Find("red_male"));
         }
-        if (relationships[1] == 1)
+        if (relationships[1] == 1 && character != 2)
         {
-            friends[1] = GameObject.Find("red_female");
+            friends.Add(GameObject.Find("red_female"));
         }
-        else if (relationships[1] == 2)
+        else if (relationships[1] == 2 && character != 2)
         {
-            enemies[1] = GameObject.Find("red_female");
+            enemies.Add(GameObject.Find("red_female"));
         }
-        if (relationships[2] == 1)
+        if (relationships[2] == 1 && character != 3)
         {
-            friends[2] = GameObject.Find("green_male");
+            friends.Add (GameObject.Find("green_male"));
         }
-        else if (relationships[2] == 2)
+        else if (relationships[2] == 2 && character != 3)
         {
-            enemies[2] = GameObject.Find("green_male");
+            enemies.Add(GameObject.Find("green_male"));
         }
-        if (relationships[3] == 1)
+        if (relationships[3] == 1 && character != 4)
         {
-            friends[3] = GameObject.Find("green_female");
+            friends.Add(GameObject.Find("green_female"));
         }
-        else if (relationships[3] == 2)
+        else if (relationships[3] == 2 && character != 4)
         {
-            enemies[3] = GameObject.Find("green_female");
+            enemies.Add(GameObject.Find("green_female"));
         }
-        if (relationships[4] == 1)
+        if (relationships[4] == 1 && character != 5)
         {
-            friends[4] = GameObject.Find("blue_male");
+            friends.Add(GameObject.Find("blue_male"));
         }
-        else if (relationships[4] == 2)
+        else if (relationships[4] == 2 && character != 5)
         {
-            enemies[4] = GameObject.Find("blue_male");
+            enemies.Add(GameObject.Find("blue_male"));
         }
-        if (relationships[5] == 1)
+        if (relationships[5] == 1 && character != 6)
         {
-            friends[5] = GameObject.Find("blue_female");
+            friends.Add(GameObject.Find("blue_female"));
         }
-        else if (relationships[5] == 2)
+        else if (relationships[5] == 2 && character != 6)
         {
-            enemies[5] = GameObject.Find("blue_female");
+            enemies.Add(GameObject.Find("blue_female"));
         }
     }
 
@@ -157,9 +158,9 @@ public class AuthoredGuestManager : EventManager
     protected override void Start()
     {
         base.Start();
-        AddTree(new WaitTree(this, 2), 6);
+        //AddTree(new WaitTree(this, 2), 6);
         AddTree(new FindRoom(this, "receptionist", receptionist, reception), 8);
-        AddTree(new WaitTree(this, waitTime), 50);
+        //AddTree(new WaitTree(this, waitTime), 50);
         //AddTree(new SecretRomance(this, "receptionist", receptionist), 11);
 
         //Follows priority assignments.
@@ -303,6 +304,17 @@ public class AuthoredGuestManager : EventManager
         {
             priorities_actual[6] = 0;
         }
+
+        //Gossip chance - outgoing people have it doubled, shy halved, honorable set to 0.
+        if (traits.Contains("Outgoing")) { gossipChance = gossipChance * 2; }
+        if (traits.Contains("Shy")) { gossipChance = gossipChance / 2; }
+        if (traits.Contains("Honorable")) { gossipChance = 0; }
+
+        //Confess affair chance - paranoid people have it halved, trusting have it doubled, honorable quadrupled, cruel set to 0.
+        if (traits.Contains("Paranoid")) { confessAffairChance = confessAffairChance / 2; }
+        if (traits.Contains("Trusting")) { confessAffairChance = confessAffairChance * 2; }
+        if (traits.Contains("Honorable")) { confessAffairChance = confessAffairChance * 4; }
+        if (traits.Contains("Cruel")) { confessAffairChance = 0; }
     }
 
     // Update is called once per frame
@@ -324,17 +336,18 @@ public class AuthoredGuestManager : EventManager
                 }
             }
 
+            //Murder. Kind/honorable actors will not do it, everyone else will.
             if (sentence.verb == Sentence.Verb.Love)
             {
                 if (sentence.noun1 == SO || sentence.noun2 == SO)
                 {
                     if (sentence.noun1 != gameObject && sentence.noun2 != gameObject)
                     {
-                        if (sentence.noun1 != SO)
+                        if (sentence.noun1 != SO && (!traits.Contains("Kind") || !traits.Contains("Honorable")))
                         {
                             AddTree(new StalkAndKill(this, "target", sentence.noun1), 30);
                         }
-                        else
+                        else if (!traits.Contains("Kind") && !traits.Contains("Honorable"))
                         {
                             AddTree(new StalkAndKill(this, "target", sentence.noun2), 30);
                         }
@@ -433,8 +446,22 @@ public class AuthoredGuestManager : EventManager
         prioritystep += priorities_actual[2];
         if (randNumber < prioritystep+priorities_actual[3] && randNumber >= priotemp)
         {
-            var partner = RandomFromArray(otherGuests);
-            if (partner == null) { partner = RandomFromArray(enemies); }
+            GameObject partner = null;
+            if (friends.Count!=0)
+            {
+                int index = UnityEngine.Random.Range(0, friends.Count - 1);
+                partner = friends[index];
+            }
+            else if (enemies.Count!=0)
+            {
+                int index = UnityEngine.Random.Range(0, enemies.Count - 1);
+                partner = enemies[index];
+                enemies.Remove(partner);
+            }
+            else
+            {
+                partner = RandomFromArray(otherGuests);
+            }
             AddTree(new Snooker(this, RandomFromArray(snooker), partner), 4);
         }
         priotemp = prioritystep+priorities_actual[3];
@@ -449,10 +476,6 @@ public class AuthoredGuestManager : EventManager
         {
             AddTree(new Bar(this, 10, 20, bar), 2);
         }
-        else
-        {
-            Debug.Log("Tryig to add a 'fluff' priority tree which is out of bounds." + randNumber + "Bound is: " + prioritytotal);
-        }
     }
 
     private void AddGossip()
@@ -463,7 +486,34 @@ public class AuthoredGuestManager : EventManager
             GameObject target;
             do
             {
-                target = RandomFromArray(otherGuests);
+                if (friends.Count != 0)
+                {
+                    int index = UnityEngine.Random.Range(0, friends.Count - 1);
+                    target = friends[index];
+                    //If the target is honorable, remove friendship. If no friendship, add enemity.
+                    if (target.GetComponentInChildren<AuthoredGuestManager>().traits.Contains("Honorable"))
+                    {
+                        if (target.GetComponentInChildren<AuthoredGuestManager>().friends.Contains(this.transform.parent.gameObject))
+                        {
+                            target.GetComponentInChildren<AuthoredGuestManager>().friends.Remove(this.transform.parent.gameObject);
+                        }
+                        else if (!target.GetComponentInChildren<AuthoredGuestManager>().friends.Contains(this.transform.parent.gameObject))
+                        {
+                            target.GetComponentInChildren<AuthoredGuestManager>().enemies.Add(this.transform.parent.gameObject);
+                        }
+                    }
+                }
+                else if (enemies.Count != 0)
+                {
+                    int index = UnityEngine.Random.Range(0, enemies.Count - 1);
+                    target = enemies[index];
+                    //If we interact with an enemy in a gossip, we no longer consider them an enemy.
+                    enemies.Remove(target);
+                }
+                else
+                {
+                    target = RandomFromArray(otherGuests);
+                }
             } while (target == gossip.noun1 || target == gossip.noun2);
             AddTree(new Gossip(this, target, gossip), 13);
         }

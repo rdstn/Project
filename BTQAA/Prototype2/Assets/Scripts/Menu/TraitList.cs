@@ -208,7 +208,7 @@ public class TraitList : MonoBehaviour
     public void MouseIn()
     {
         currentToolTipText = tooltip;
-        print(currentToolTipText);
+        //print(currentToolTipText);
     }
 
     public void MouseOut()

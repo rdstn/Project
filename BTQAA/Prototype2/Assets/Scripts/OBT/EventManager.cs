@@ -69,7 +69,7 @@ public abstract class EventManager : MonoBehaviour {
 
 			behaviourQueue.Add(prioritisedBehaviour);
 			if(behaviourQueue.Count == 1 && prioritisedBehaviour.behaviourTree != null){
-                Debug.Log(gameObject + " began Tree: " + prioritisedBehaviour.behaviourTree);
+                //Debug.Log(gameObject + " began Tree: " + prioritisedBehaviour.behaviourTree);
                 behaviourQueue[0].behaviourTree.Start();
 			}
 
@@ -106,10 +106,13 @@ public abstract class EventManager : MonoBehaviour {
 		}
 	}
 
-	public void Kill (GameObject killer){
-		alive = false;
-		this.killer = killer;
-        log.GetComponent<log>().Happening(killer.GetComponent<AuthoredGuestManager>().actor_name + " has murder on their mind.", true);
+    public void Kill(GameObject killer) {
+        alive = false;
+        this.killer = killer;
+        //Check that we don't broadcast detective murders since this will break the kill
+        //(detective murders have been set in v 2015 as a tool to take inmates out of the game).
+        if (killer.GetComponentInChildren<DetectiveManager>() == null)
+        { log.GetComponent<log>().Happening(killer.GetComponent<AuthoredGuestManager>().actor_name + " has murder on their mind.", true); }
         if (behaviourQueue.Count > 0){
 			behaviourQueue[0].behaviourTree.root.Interrupt();
 			behaviourQueue.RemoveRange(0, behaviourQueue.Count);
