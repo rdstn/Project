@@ -24,7 +24,7 @@ public class camera : MonoBehaviour
         //var mouseposition = Camera.main.ScreenToWorldPoint(new Vector3(mPosX, mPosY, 0));
         //print(mouseposition);
         // Do camera movement by mouse position
-        if (mPosX < scrollArea)
+        /*if (mPosX < scrollArea)
         {
             myTransform.Translate(Vector3.right * -scrollSpeed * Time.deltaTime);
         }
@@ -40,10 +40,12 @@ public class camera : MonoBehaviour
         {
             myTransform.Translate(Vector3.up * scrollSpeed * Time.deltaTime);
         }
+		*/
 
         // Do camera movement by keyboard
         myTransform.Translate(new Vector3(Input.GetAxis("Horizontal") * scrollSpeed * Time.deltaTime, Input.GetAxis("Vertical") * scrollSpeed * Time.deltaTime, 0));
 
+		/*
         // Do camera movement by holding down option                 or middle mouse button and then moving mouse
         if ((Input.GetKey("left alt") || Input.GetKey("right alt")) || Input.GetMouseButton(2))
         {
@@ -51,8 +53,9 @@ public class camera : MonoBehaviour
         }
 
 
+
         //Scrolling Zoom
-        if (Input.GetAxis("Mouse ScrollWheel") < -0) // forward
+		if (Input.GetAxis("Mouse ScrollWheel") < -0) // forward
         {
             Camera.main.orthographicSize *= 1.1f;
         }
@@ -60,6 +63,15 @@ public class camera : MonoBehaviour
         {
             Camera.main.orthographicSize *= 0.9f;
         }
+		*/
+		if (Input.GetKey("-") || Input.GetKey ("q")) //forward
+		{
+			Camera.main.orthographicSize *= 1.05f;
+		}
+		if (Input.GetKey("+") || Input.GetKey ("e")) //backward
+		{
+			Camera.main.orthographicSize *= 0.95f;
+		}
     }
 }
 

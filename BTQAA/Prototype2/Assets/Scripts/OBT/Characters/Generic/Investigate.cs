@@ -70,6 +70,8 @@ public class Investigate : BehaviourTree {
 				new SetRandomRoom(this, "jailPoint", "jail"),
 				new TravelTo(this, "jailPoint"),
 				new Kill(this, "murderer"),
+                //Kill detective to prevent them from coming over repeatedly. Could be an issue if we have multiple murderes.
+                new Kill(this, "self"),
 			})
 		});
 	}

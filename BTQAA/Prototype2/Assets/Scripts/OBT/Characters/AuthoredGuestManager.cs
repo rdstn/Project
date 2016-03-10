@@ -34,6 +34,7 @@ public class AuthoredGuestManager : EventManager
     public GameObject bar;
     public GameObject stairwell;
     public GameObject reception;
+    public GameObject[] rooms;
 
     private GameObject hotelRoom; //CHEAT
 
@@ -45,6 +46,8 @@ public class AuthoredGuestManager : EventManager
     private GameObject carrier;
     private GameObject log;
     public double[] priorities_actual; //Used to pick behaviour trees to add to the queue.
+    public double[] priorities_friends;
+    public double[] priorities_enemies;
     public string[] traits; //Used to store the traits in a more convenient way.
     public int[,] priority_defines; //Used to read author-assigned priorities.
     public int[] relationships; //Likewise, for relationships.
@@ -56,6 +59,8 @@ public class AuthoredGuestManager : EventManager
         carrier = GameObject.Find("Carrier");
         log = GameObject.Find("Log");
         priorities_actual = new double[7];
+        priorities_friends = new double[7];
+        priorities_enemies = new double[7];
         if (character == 1)
         {
             priority_defines = carrier.GetComponent<CarrierScript>().red1priorities;
@@ -226,6 +231,8 @@ public class AuthoredGuestManager : EventManager
             trait_score = trait_score + 0.5;
         }
         priorities_actual[3] = 2.00 * (double)priority_defines[3, 0] / 3.00 + trait_score;
+        priorities_friends[3] = 2.00 * (double)priority_defines[3, 2] / 3.00 + trait_score;
+        priorities_enemies[3] = 2.00 * (double)priority_defines[3, 1] / 3.00 + trait_score;
         if (priorities_actual[3] < 0)
         {
             priorities_actual[3] = 0;
@@ -298,8 +305,10 @@ public class AuthoredGuestManager : EventManager
             trait_score = trait_score - 0.25;
         }
         priorities_actual[6] = 1.00 * (double)priority_defines[6, 0] / 3.00 + trait_score;
-        print(Array.IndexOf<string>(traits, "Amorous"));
-        print(priority_defines[6, 0] + " " + priorities_actual[6] + " " + actor_name);
+        priorities_friends[6] = 1.00 * (double)priority_defines[6, 2] / 3.00 + trait_score;
+        priorities_enemies[6] = 1.00 * (double)priority_defines[6, 1] / 3.00 + trait_score;
+        //print(Array.IndexOf<string>(traits, "Amorous"));
+        //print(priority_defines[6, 0] + " " + priorities_actual[6] + " " + actor_name);
         if (priorities_actual[6] < 0)
         {
             priorities_actual[6] = 0;
@@ -360,6 +369,7 @@ public class AuthoredGuestManager : EventManager
                 if (!knowledgeBase.Murdered(gameObject, sentence.noun2))
                 {
                     AddTree(new FoundCorpse(this, receptionist, sentence), 20);
+                    AddTree(new Lockup(this, 400, RandomFromArray(rooms)), 19);
                 }
             }
         }
@@ -390,18 +400,61 @@ public class AuthoredGuestManager : EventManager
             }
             else
             {
-                do
+                //If we have at least two friends and we prefer having affairs with friends, go for friends.
+                if (friends.Count!=0 && priorities_friends[6]>priorities_enemies[6] && priorities_friends[6]>priorities_actual[6])
+                {
+                    int index = UnityEngine.Random.Range(0, friends.Count - 1);
+                    romanceTarget = friends[index];
+                }
+
+                else if (enemies.Count!=0 && priorities_enemies[6] > priorities_friends[6] && priorities_enemies[6] > priorities_actual[6])
+                {
+                    int index = UnityEngine.Random.Range(0, enemies.Count - 1);
+                    romanceTarget = enemies[index];
+                   // enemies.Remove(romanceTarget);
+                }
+                else
                 {
                     romanceTarget = RandomFromArray(otherGuests);
-                } while (romanceTarget == SO);
+                }
+
+                int chance = UnityEngine.Random.Range(0, 2);
+                string[] targetsTraits = romanceTarget.GetComponentInChildren<AuthoredGuestManager>().traits;
+
+                //No luck, target is chaste and honorable
+              /*  if (targetsTraits.Contains("Chaste") && targetsTraits.Contains("Honorable"))
+                {
+                    AddTree(new Fail(this, 20, romanceTarget), 15);
+                    AddTree(new Lockup(this, 20, RandomFromArray(rooms)), 14);
+                }
+
+                //We might do it, the target is chaste OR honorable.
+                else if (targetsTraits.Contains("Chaste") || targetsTraits.Contains("Honorable"))
+                {
+                    if (chance == 0)
+                    {
+                        AddTree(new SecretRomance(this, "romanceTarget", romanceTarget), 15);
+                    }
+                    else
+                    {
+                        AddTree(new Fail(this, 10, romanceTarget), 15);
+                        AddTree(new Lockup(this, 20, RandomFromArray(rooms)), 14);
+                    }
+                }
+
+                //Target is neither particularly chaste, nor honorable.
+                else
+                {
+                    AddTree(new SecretRomance(this, "romanceTarget", romanceTarget), 15);
+                }
+				*/
+				AddTree(new SecretRomance(this, "romanceTarget", romanceTarget), 15);
+
             }
 
-            //if (romanceTarget == null)
-            //{
-              //  do { romanceTarget = RandomFromArray(enemies); } while (romanceTarget == SO);
-            //}
-
-            AddTree(new SecretRomance(this, "romanceTarget", romanceTarget), 15);
+            //In case we get stuck, do a bit of random movement.
+            AddTree(new SimpleRandomMove(this), 14);
+            
         }
 
         //Confess?
@@ -419,63 +472,91 @@ public class AuthoredGuestManager : EventManager
 
     private void AddRandomFluffTree()
     {
+        //"Test" is used as a test actor, to look at behaviour of the code.
         double prioritytotal = 0;
         double prioritystep = 0; //We need this to properly do priorities.
+        double randNumber = 0;
+        double priotemp = 0;
         for (int i = 0; i < priorities_actual.Length - 1; i++)
         {
             prioritytotal += priorities_actual[i];
         }
-        double randNumber = UnityEngine.Random.Range(0, (float)prioritytotal);
+        randNumber = UnityEngine.Random.Range(0.00f, (float)prioritytotal);
+        if (actor_name == "Test") { print(randNumber); }
         if (randNumber < priorities_actual[0])
         {
-            AddTree(new Toilet(this, 5, 10, RandomFromArray(toilet)), 5);
+            AddTree(new Toilet(this, 5, 10, RandomFromArray(toilet)), 1);
         }
-        var priotemp = prioritystep+priorities_actual[0];
+        priotemp = prioritystep+priorities_actual[0];
         prioritystep += priorities_actual[0];
+        if (actor_name == "Test") { print("Step = " + prioritystep + ". Temp is = " + priotemp); }
         if (randNumber < prioritystep+priorities_actual[1] && randNumber >= priotemp)
         {
             AddTree(new TV(this, 20, 30, hotelRoom), 2);
         }
         priotemp = prioritystep+priorities_actual[1];
         prioritystep += priorities_actual[1];
+        if (actor_name == "Test") { print("Step = " +prioritystep + ". Temp is = " + priotemp); }
         if (randNumber < prioritystep+priorities_actual[2] && randNumber >= priotemp)
         {
             AddTree(new Chill(this, 20, 30, hotelRoom), 2);
         }
         priotemp = prioritystep+priorities_actual[2];
         prioritystep += priorities_actual[2];
+        if (actor_name == "Test") { print("Step = " + prioritystep + ". Temp is = " + priotemp); }
         if (randNumber < prioritystep+priorities_actual[3] && randNumber >= priotemp)
         {
             GameObject partner = null;
-            if (friends.Count!=0)
+            //If we prefer playing with friends, good, do so.
+            if (friends.Count!=0 && priorities_friends[3]>=priorities_enemies[3] && priorities_friends[3]>=priorities_actual[3])
             {
-                int index = UnityEngine.Random.Range(0, friends.Count - 1);
+                int index = UnityEngine.Random.Range(0, friends.Count);
                 partner = friends[index];
+                AddTree(new Snooker(this, RandomFromArray(snooker), partner), 4);
             }
-            else if (enemies.Count!=0)
+            //If we prefer playing with enemies.
+            else if (enemies.Count!=0 && priorities_enemies[3] >= priorities_friends[3] && priorities_enemies[3] >= priorities_actual[3])
             {
-                int index = UnityEngine.Random.Range(0, enemies.Count - 1);
+                int index = UnityEngine.Random.Range(0, enemies.Count);
                 partner = enemies[index];
-                enemies.Remove(partner);
+                int success = 0;
+                //If the enemy is unkind, the interaction has 50% chance to backfire and lead to lockup time.
+                if (!partner.GetComponentInChildren<AuthoredGuestManager>().traits.Contains("Kind"))
+                {
+                    success = UnityEngine.Random.Range(0, 2);
+                }
+                if (success==0)
+                {
+                    enemies.Remove(partner);
+                    AddTree(new Snooker(this, RandomFromArray(snooker), partner), 4);
+                }
+                else {
+                    AddTree(new Fail(this, 10, partner),3);
+                    AddTree (new Lockup(this, 20, RandomFromArray(rooms)),2);
+                }
             }
+            //If we don't care, friends or enemies.
             else
             {
                 partner = RandomFromArray(otherGuests);
+                AddTree(new Snooker(this, RandomFromArray(snooker), partner), 4);
             }
-            AddTree(new Snooker(this, RandomFromArray(snooker), partner), 4);
         }
         priotemp = prioritystep+priorities_actual[3];
         prioritystep += priorities_actual[3];
+        if (actor_name == "Test") { print("Step = " + prioritystep + ". Temp is = " + priotemp); }
         if (randNumber < prioritystep+priorities_actual[4] && randNumber >= priotemp)
         {
             AddTree(new Meal(this, 20, 30, RandomFromArray(restaurant)), 5);
         }
         priotemp = prioritystep+priorities_actual[4];
         prioritystep += priorities_actual[4];
+        if (actor_name == "Test") { print("Step = " + prioritystep + ". Temp is = " + priotemp); }
         if (randNumber < prioritystep+priorities_actual[5] && randNumber >= priotemp)
         {
             AddTree(new Bar(this, 10, 20, bar), 2);
         }
+
     }
 
     private void AddGossip()
@@ -488,7 +569,7 @@ public class AuthoredGuestManager : EventManager
             {
                 if (friends.Count != 0)
                 {
-                    int index = UnityEngine.Random.Range(0, friends.Count - 1);
+                    int index = UnityEngine.Random.Range(0, friends.Count);
                     target = friends[index];
                     //If the target is honorable, remove friendship. If no friendship, add enemity.
                     if (target.GetComponentInChildren<AuthoredGuestManager>().traits.Contains("Honorable"))
